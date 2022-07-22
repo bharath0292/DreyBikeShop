@@ -26,6 +26,7 @@ namespace DreyBikeShop
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Default")));
+            services.AddMvc(option => option.EnableEndpointRouting = false);
             services.AddControllersWithViews();
         }
 
@@ -45,15 +46,28 @@ namespace DreyBikeShop
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
-            app.UseRouting();
+            //app.UseRouting();
 
-            app.UseAuthorization();
+            //app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
+            //app.UseEndpoints(endpoints =>
+            //{
+            //    endpoints.MapControllerRoute(
+            //        name: "default",
+            //        pattern: "{controller=Home}/{action=Index}/{id?}");
+            //});
+
+            app.UseMvc(routes =>
             {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                routes.MapRoute(
+                        name: "Default",
+                        template: "{controller=Home}/{action=Index}/{id?}"
+                    );
+                //routes.MapRoute(
+                //        name: "ByYearMonth",
+                //        template: "make/bikes/{year:int:length(4)}/{month:int:range(1,12)}",
+                //        new { controller = "make", action = "ByYearMonth" }
+                //    ); 
             });
         }
     }
