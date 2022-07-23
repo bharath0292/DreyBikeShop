@@ -9,18 +9,16 @@ namespace DreyBikeShop.Controllers
 {
     public class MakeController : Controller
     {
-        //url - make/bikes
-        [Route(template:"Make/Bikes")]
-        public IActionResult Bikes()
+        private readonly AppDbContext _db;
+        
+        public MakeController(AppDbContext db)
         {
-            Make make = new Make { Id = 1, Name = "Harley Davidson" };
-            return View(make);
+            _db = db;
         }
-
-        [Route(template: "make/bikes/{year:int:length(4)}/{month:int:range(1,12)}")]
-        public IActionResult ByYearMonth(int year, int month)
+        
+        public IActionResult Index()
         {
-            return Content(year+":"+month);
+            return View(_db.Makes.ToList());
         }
     }
 }
