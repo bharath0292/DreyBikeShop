@@ -51,5 +51,26 @@ namespace DreyBikeShop.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        public IActionResult Edit(int id)
+        {
+            var make = _db.Makes.Find(id);
+            if (make == null)
+            {
+                return NotFound();
+            }
+            return View(make);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Make make)
+        {
+            if (ModelState.IsValid)
+            {
+                _db.Update(make);
+                _db.SaveChanges();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(make);
+        }
     }
 }
