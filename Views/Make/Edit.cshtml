@@ -1,7 +1,7 @@
 ﻿@model Make
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Edit";
 }
 
 <br />
@@ -9,7 +9,7 @@
 <br />
 <br />
 
-<h2 class="text-info">Add Make of Vehicle</h2>
+<h2 class="text-info">Edit Make of Vehicle</h2>
 <form action="Create" method="post">
     <div class="form-group row">
         <div class="col-12">
@@ -21,7 +21,7 @@
         </div>
 
         <div class="form-group">
-            <input type="submit" class="btn btn-primary" value="Create" />
+            <input type="submit" class="btn btn-primary" asp-route-id="@Model.Id" value="Update" />
             <a asp-action="Index" class="btn btn-success">Back</a>
         </div>
 

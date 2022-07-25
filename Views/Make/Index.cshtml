@@ -14,7 +14,7 @@
         <h2 class="text-info">Makes of Vehicle</h2>
     </div>
     <div class="col-6 text-right">
-        <a class="btn btn-info" asp-action="Create">Add New Make</a>
+        <a class="btn btn-info" asp-action="Create"><i class="fa-solid fa-motorcycle"></i> &nbsp; Add New Make</a>
     </div>
     <br />
     <br />
@@ -33,9 +33,11 @@
                     </td>
                     <td class="text-right">
                         <div class="btn-group" role="group">
-                            <a type="button" class="btn btn-primary rounded" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                            <a type="button" class="btn btn-primary" asp-action="Edit" asp-route-id="@item.Id"><i class="fa-solid fa-pen-to-square"></i></a>
                             <form action="Delete" method="post">
-                                <input onclick="if (!confirm('Are you sure want to delete this?')) {return false}" type="submit" class="btn btn-danger rounded" asp-action="Delete" asp-route-id="@item.Id" value="Delete "/>
+                                <button onclick="if (!confirm('Are you sure want to delete this?')) {return false}" type="submit" class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>                            
                             </form>
                         </div>
                     </td>
